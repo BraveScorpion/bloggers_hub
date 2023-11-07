@@ -1,11 +1,11 @@
-{
+ {
   "name": "client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm install next && next build",
-    "start": "next start",
+    "build": "npm install next",
+    "start": "next build && next start",
     "lint": "next lint"
   },
   "dependencies": {
