@@ -1,4 +1,19 @@
+.profile-unauth{
+    h4{
+        text-align: center;
+        color: #fd5c63;
+    }
 
+    a{
+        text-decoration: none;
+        color: white;
+        background-color: #9ca3af;
+        padding: 5px;
+        border-radius: 3px;
+        margin-left: 42vw;
+    }
+
+}
 .profile-navbar{
     margin-top: 80px;
     display: flex;

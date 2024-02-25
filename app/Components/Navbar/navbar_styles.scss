@@ -20,15 +20,19 @@ nav{
             height: 3rem;
             list-style: none;
             text-decoration: none;
-            a{
-                color:darkgrey;
-                
-            }
+
+        }
+        a{
+            color:darkgrey;
+            text-decoration: none;
+
             &:hover{
                 color:#ff5722;
                 transform: scale(1.1);
             }
+            
         }
+
 
     }
 

@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <HomeContent></HomeContent>
-      <h1>Hello new section</h1>
     </main>
   )
 }

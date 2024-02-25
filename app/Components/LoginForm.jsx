@@ -25,6 +25,8 @@ function LoginForm() {
                 //Store the accessToken and user_id in localStorage
                 localStorage.setItem('accessToken', accessToken);
                 localStorage.setItem('userId', user_id);
+                console.log("loggedin");
+                console.log(localStorage.getItem(userId));
                 
             });
         }catch (err) {

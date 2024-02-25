@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav>
       <ul className='nav-items'>
-        <li>Bloggers Hub</li>
+        <li>Dear Diary</li>
         <Link href="/">Home</Link>
         <Link href="/Categories">Categories</Link>
         <Link href="/Profile">Profile</Link>

@@ -37,10 +37,10 @@ app.post('/register', async (req, res) => {
         let user = await new User({...req.body});
         console.log(user);
         await user.save();
-        return res.status(200).json('Successfully registered');
+        return res.sendStatus(200);
 
     } catch(err) {
-        res.status(500).send('Something went wrong on our end, try again later');
+        res.sendStatus(500);
         console.log('register request error: ', err);
     }
 })
@@ -56,8 +56,13 @@ app.post('/login', async (req, res) => {
             if (bcrypt.compareSync(req.body.password, user.password)) {
                 const accessToken = jwt.sign({email: user.email}, secretKey)
                 res.status(200).json({ accessToken: accessToken, user_id: user._id});
+                console.log('Logged in succesfully')
             }
-            console.log('Logged in succesfully')
+            else{
+                res.sendStatus(403);
+            }
+            console.log("Token", user._id);
+            
         } catch (err) {
             res.status(500).send('Error logging you in, please try again later');
             console.log('Login error: ', err);
@@ -126,6 +131,7 @@ app.get('/categories/category', async (req, res) => {
         if (blogs === null){
             return res.status(400).send('No blogs for this category')
         }
+        console.log(blogs);
         res.status(200).json(blogs);
     } catch (err){
         console.log(err.message);
@@ -135,7 +141,7 @@ app.get('/categories/category', async (req, res) => {
 //Get home blogs
 app.get('/home/blogs', async (req, res) => {
     try {
-        const blogs = await Blog.find().sort([['createdAt', -1]]).limit(12);
+        const blogs = await Blog.find().limit(12);
         res.status(200).json(blogs);
     } catch (err) {
         console.log(err.message);
@@ -166,7 +172,7 @@ app.get('/blogs/view', async (req, res) => {
 
 })
 
-//Endpoint for like
+
 app.put("/blog/like", authenticateToken, async (req, res) => {
     try {
         const { blogId, userId } = req.body;
@@ -178,14 +184,14 @@ app.put("/blog/like", authenticateToken, async (req, res) => {
         }
 
         if (likedBlog.likes.includes(userId)) {
-            // Unlike the post
+
             await Blog.findOneAndUpdate(
                 {_id: blogId},
                 {$pull: { likes: userId }},
             )
             res.status(200).send('Blog unliked');
         } else {
-            // Like the post
+
             await Blog.updateOne(
                 { _id: blogId },
                 { $push: { likes: userId }}
@@ -211,11 +217,11 @@ app.put("/blog/impression", authenticateToken, async (req, res) => {
         }
 
         if (viewedBlog.views.includes(userId)) {
-            // Unlike the post
+
            return res.status(200).send('already viewed blog');
         
         } else {
-            // Like the post
+
             await Blog.updateOne(
                 { _id: blogId },
                 { $push: { views: userId }}
@@ -244,4 +250,22 @@ function authenticateToken(req, res, next){
         next();
     })
 }
-// Add new blog 
+// Add new comment
+
+app.post('/blogs/comment', authenticateToken, async (req, res) => {
+    try {
+        const { blogId, comment, userId } = req.body;
+
+        const newComment = new Comment({
+            blogId: blogId,
+            userId: userId,
+            comment: comment,
+        });
+
+        await newComment.save();
+        res.status(201).send('Comment added successfully');
+    } catch (err) {
+        console.error('Error adding comment:', err);
+        res.status(500).send('Internal Server Error');
+    }
+});

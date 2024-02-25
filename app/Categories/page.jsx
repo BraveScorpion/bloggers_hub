@@ -14,7 +14,7 @@ const page = () => {
                 <img src="../lifestyle.jpg" alt="" />
                 <h1>Lifestyle</h1>
             </div>
-            <div className="category" onClick={() => window.location.href='/Categories/lifestyle'}>
+            <div className="category" onClick={() => window.location.href='/Categories/travel'}>
                 <img src="../travel.jpg" alt="" />
                 <h1>Travel</h1>
             </div>

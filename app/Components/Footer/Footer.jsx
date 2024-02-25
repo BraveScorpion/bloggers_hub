@@ -4,9 +4,9 @@ const Footer = () => {
   return (
     <footer>
         <div>
-            <h4>Bloggers hub</h4>
-            <p>&copy;2023 Bloggers Hub. All rights reserved.</p>
-            <p>Designed by Bloggers hub team</p>
+            <h4>Dear Diary</h4>
+            <p>&copy;2024 Dear Diary. All rights reserved.</p>
+            <p>Designed by Dear Diary team</p>
         </div>
         <div>
             <h4>CATAGORIES</h4>

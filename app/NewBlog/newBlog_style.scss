@@ -6,6 +6,12 @@
     align-items: center;
     background-color: #ddd;
 
+    select{
+        font-size: 2rem;
+        width: 150px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
     input[type="text"]{
         margin-bottom: 10px;
         font-size: 1.2rem;
